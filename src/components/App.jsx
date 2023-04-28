@@ -1,6 +1,6 @@
-import { Filter } from './Filter/Filter';
-import { Form } from './Contacts/Contacts';
-import { ContactList } from './ContactList/ContactList';
+import { Filter } from './filter/Filter';
+import { Form } from './contacts/Contacts';
+import { ContactList } from './contactList/ContactList';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from '../redux/operations';
