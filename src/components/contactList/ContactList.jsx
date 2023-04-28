@@ -1,8 +1,8 @@
 import css from './contactlist.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'components/API/operations';
-import Loader from 'components/loader';
+import { deleteContact } from '../../redux/operations';
+import Loader from '../Loader';
 
 export function ContactList() {
   const contacts = useSelector(state => state.newContact.items);

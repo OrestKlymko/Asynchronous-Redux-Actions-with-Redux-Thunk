@@ -1,9 +1,13 @@
 import { nanoid } from 'nanoid';
 import React, {useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { postContact } from 'redux/operations';
 import css from './form.module.css';
 
 export function Form(props) {
   const [state, setState] = useState({ name: '', number: '' });
+  const contacts = useSelector(state => state.newContact.items);
+  const dispatch = useDispatch();
 
   const onInputChange = e => {
     setState({ ...state, [e.currentTarget.name]: e.currentTarget.value });
@@ -11,11 +15,16 @@ export function Form(props) {
 
   const formSubmit = e => {
     e.preventDefault();
-    props.formSubmit({ ...state, id: nanoid() });
-    setState({
-      name: '',
-      number: '',
-    });
+    const data = { ...state, id: nanoid() };
+    if (Boolean(contacts.find(contact => contact.name === data.name))) {
+      alert(`${data.name} is already in contacts`);
+    } else {
+      dispatch(postContact(data));
+      setState({
+        name: '',
+        number: '',
+      });
+    }
   };
 
   const nameID = nanoid();

@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteContact, fetchContacts } from './operations';
-import { postContact } from './operations';
+import { deleteContact, fetchContacts, postContact } from './operations';
 
 export const getAllContacts = createSlice({
   name: 'getContacts',
@@ -72,4 +71,3 @@ export const getAllContacts = createSlice({
     },
   },
 });
-

@@ -1,28 +1,12 @@
-import { Filter } from './filter/Filter';
-import { Form } from './contacts/contacts';
-import { ContactList } from './contactList/ContactList';
-import { useSelector, useDispatch } from 'react-redux';
+import { Filter } from './Filter/Filter';
+import { Form } from './Contacts/Contacts';
+import { ContactList } from './ContactList/ContactList';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { filterContacts } from '../redux/filterSlice';
-import { fetchContacts, postContact } from './API/operations';
+import { fetchContacts } from '../redux/operations';
 
 export function App() {
-  const contacts = useSelector(state => state.newContact.items);
-  const filter = useSelector(state => state.filter);
-
   const dispatch = useDispatch();
-
-  const onInput = data => {
-    dispatch(filterContacts(data.toLowerCase()));
-  };
-
-  const formSubmit = data => {
-    if (Boolean(contacts.find(contact => contact.name === data.name))) {
-      alert(`${data.name} is already in contacts`);
-    } else {
-      dispatch(postContact(data));
-    }
-  };
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -31,10 +15,10 @@ export function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <Form formSubmit={formSubmit} />
+      <Form />
       <h2>Contacts</h2>
-      <Filter onChange={onInput} />
-      <ContactList contacts={contacts} filter={filter} />
+      <Filter />
+      <ContactList />
     </div>
   );
 }
